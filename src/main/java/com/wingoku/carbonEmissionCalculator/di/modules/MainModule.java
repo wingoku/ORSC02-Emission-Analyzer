@@ -13,6 +13,7 @@ import java.util.HashMap;
 @Module
 public class MainModule {
     private HashMap<String, String> commandLineArgsMap = null;
+    private RuntimeException runtimeException = new RuntimeException("Please provide all the necessary arguments like Start City, End City & Transportation Type");
     
     public MainModule(String[] args) {
         commandLineArgsMap = new HashMap<>();
@@ -20,13 +21,18 @@ public class MainModule {
     }
 
     private void createCommandLineArgsMap(String[] args) {
+        System.out.println("size: "+ args.length);
         for (int i = 0; i < args.length; i++) {
+            System.out.println("args["+i+"]: "+ args[i]);
             if(args[i].contains("--start")) {
                 String cityName = "";
                 if(args[i].contains("=")) {
                     cityName = args[i].split("=")[1];
                 }
                 else {
+                    if(i+1 >= args.length)
+                        throw runtimeException;
+
                     cityName = args[i + 1];
                     i++;
                 }
@@ -41,7 +47,10 @@ public class MainModule {
                     cityName = args[i].split("=")[1];
                 }
                 else {
-                    cityName = args[i+1];
+                    if(i+1 >= args.length)
+                        throw runtimeException;
+
+                    cityName = args[i + 1];
                     i++;
                 }
 
@@ -55,7 +64,10 @@ public class MainModule {
                     transportationMethod = args[i].split("=")[1];
                 }
                 else {
-                    transportationMethod = args[i+1];
+                    if(i+1 >= args.length)
+                        throw runtimeException;
+
+                    transportationMethod = args[i + 1];
                     i++;
                 }
 
@@ -69,7 +81,6 @@ public class MainModule {
     }
     
     private void validate() {
-        RuntimeException runtimeException = new RuntimeException("Please provide all the necessary arguments like Start City, End City & Transportation Type");
         if(commandLineArgsMap.size() < 3)
             throw runtimeException;
         

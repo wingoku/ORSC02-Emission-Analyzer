@@ -1,7 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4075d8c4-fc7d-41c4-b441-4669da8d582f" name="Default Changelist" comment="" />
+    <list default="true" id="4075d8c4-fc7d-41c4-b441-4669da8d582f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/MainModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/MainModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/interfaces/GeolocationAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/interfaces/GeolocationAPI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/RequestBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/directions/DirectionsResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/directions/DirectionsResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/distanceOrTime/DistanceOrTimeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/distanceOrTime/DistanceOrTimeResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/searchCity/SearchCityResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/models/responses/searchCity/SearchCityResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/wingoku/carbonEmissionCalculator/utils/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocation_responses/620dbccf843e1e960610378bb3ee0843.0" beforeDir="false" afterPath="$PROJECT_DIR$/geolocation_responses/620dbccf843e1e960610378bb3ee0843.0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocation_responses/620dbccf843e1e960610378bb3ee0843.1" beforeDir="false" afterPath="$PROJECT_DIR$/geolocation_responses/620dbccf843e1e960610378bb3ee0843.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocation_responses/91b9db93b4c829bb934669bcc473f26b.0" beforeDir="false" afterPath="$PROJECT_DIR$/geolocation_responses/91b9db93b4c829bb934669bcc473f26b.0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocation_responses/91b9db93b4c829bb934669bcc473f26b.1" beforeDir="false" afterPath="$PROJECT_DIR$/geolocation_responses/91b9db93b4c829bb934669bcc473f26b.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocation_responses/journal" beforeDir="false" afterPath="$PROJECT_DIR$/geolocation_responses/journal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/components/MainComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/components/MainComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/modules/MainModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/modules/MainModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/modules/OKHttpModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/interfaces/GeolocationAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/interfaces/GeolocationAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/RequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/RequestBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/directions/DirectionsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/directions/DirectionsResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/distanceOrTime/DistanceOrTimeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/distanceOrTime/DistanceOrTimeResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/searchCity/SearchCityResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/searchCity/SearchCityResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/utils/Constants.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +58,16 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -21,21 +76,36 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1eM7JG1H2XaaasodtpPjlg9lkba" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="com.wingoku.carbonemissioncalculator" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Groovy JUnit" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/models/responses/directions" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.wingoku.carbonEmissionCalculator" />
+      <recent name="com.wingoku.carbonEmissionCalculator.di.modules" />
+      <recent name="com.wingoku.carbonEmissionCalculator.interfaces" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\UF\IdeaProjects\CarbonEmissionCalculator\src\main\resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\UF\IdeaProjects\CarbonEmissionCalculator\src\main\java\com\wingoku\carbonEmissionCalculator\models\responses\directions" />
@@ -55,7 +125,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CarbonEmissionCalculatorTest.testCalculate">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="12" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -64,7 +134,7 @@
       </envs>
       <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.Main" />
       <module name="com.wingoku.carbonEmissionCalculator.main" />
-      <option name="PROGRAM_PARAMETERS" value=" --start Hamburg --end Berlin --transportation-method medium-diesel-car" />
+      <option name="PROGRAM_PARAMETERS" value=" --start Hamburg --end Berlin --transportation-method=medium-diesel-car" />
       <extension name="recording" autostart="false">
         <include_pattern>
           <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.*" />
@@ -88,6 +158,108 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CarbonEmissionCalculatorTest.testCalculate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.wingoku.carbonEmissionCalculator.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="recording" autostart="true" />
+      <option name="PACKAGE_NAME" value="com.wingoku.carbonEmissionCalculator" />
+      <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.CarbonEmissionCalculatorTest" />
+      <option name="METHOD_NAME" value="testCalculate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainModuleTest.testMissingCmdArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.wingoku.carbonEmissionCalculator.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.di.modules.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="recording" autostart="true" />
+      <option name="PACKAGE_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules" />
+      <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules.MainModuleTest" />
+      <option name="METHOD_NAME" value="testMissingCmdArgs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainModuleTest.testValidCmdArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.wingoku.carbonEmissionCalculator.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.di.modules.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="recording" autostart="true" />
+      <option name="PACKAGE_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules" />
+      <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules.MainModuleTest" />
+      <option name="METHOD_NAME" value="testValidCmdArgs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainModuleTest.testValidCmdArgsWithEqualDelimiter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.wingoku.carbonEmissionCalculator.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.di.modules.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="recording" autostart="true" />
+      <option name="PACKAGE_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules" />
+      <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules.MainModuleTest" />
+      <option name="METHOD_NAME" value="testValidCmdArgsWithEqualDelimiter" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainModuleTest.testValidCmdArgsWithSpaceDelimiterAndReversedOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.wingoku.carbonEmissionCalculator.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wingoku.carbonEmissionCalculator.di.modules.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="recording" autostart="true" />
+      <option name="PACKAGE_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules" />
+      <option name="MAIN_CLASS_NAME" value="com.wingoku.carbonEmissionCalculator.di.modules.MainModuleTest" />
+      <option name="METHOD_NAME" value="testValidCmdArgsWithSpaceDelimiterAndReversedOrder" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.MainModuleTest.testValidCmdArgs" />
+      <item itemvalue="JUnit.MainModuleTest.testMissingCmdArgs" />
+      <item itemvalue="JUnit.MainModuleTest.testValidCmdArgsWithSpaceDelimiterAndReversedOrder" />
+      <item itemvalue="JUnit.MainModuleTest.testValidCmdArgsWithEqualDelimiter" />
+      <item itemvalue="JUnit.CarbonEmissionCalculatorTest.testCalculate" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CarbonEmissionCalculatorTest.testCalculate" />
+        <item itemvalue="JUnit.MainModuleTest.testValidCmdArgsWithEqualDelimiter" />
+        <item itemvalue="JUnit.MainModuleTest.testValidCmdArgsWithSpaceDelimiterAndReversedOrder" />
+        <item itemvalue="JUnit.MainModuleTest.testMissingCmdArgs" />
+        <item itemvalue="JUnit.MainModuleTest.testValidCmdArgs" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -102,18 +274,29 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.java</url>
-          <line>83</line>
+          <line>128</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/di/modules/CarbonEmissionCalculatorModule.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/wingoku/carbonEmissionCalculator/CarbonEmissionCalculator.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

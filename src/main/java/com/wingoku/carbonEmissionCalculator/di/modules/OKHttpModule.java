@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 
 import javax.inject.Named;
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Module (includes = LoggerModule.class)
 public class OKHttpModule {
 
-    private static final int REQUEST_RETRIES = 0;
+    private static final int REQUEST_RETRIES = 1;
     private static final int CONNECTION_TIME_OUT = 25;
 
     @Provides
@@ -53,35 +52,34 @@ public class OKHttpModule {
         return new Cache(httpCacheDirectory, cacheSize);
     }
 
+    //logging OKHTTP internal handling logs
     @Provides
     public HttpLoggingInterceptor providesOkhttpLoggingInterceptor() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC).setLevel
+                (HttpLoggingInterceptor.Level.BODY).setLevel(HttpLoggingInterceptor.Level.HEADERS);
         return interceptor;
     }
 
     @Provides
     @Named("RewriteResponseInterceptor")
     public Interceptor providesRewriteResponseInterceptor() {
-        return new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                okhttp3.Response originalResponse = chain.proceed(chain.request());
-                String cacheControl = originalResponse.header("Cache-Control");
-                if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
-                        cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0") || cacheControl.contains("only-if-cached")) {
-                    return originalResponse.newBuilder()
-                            .removeHeader("must-revalidate")
-                            .removeHeader("Pragma")
-                            .removeHeader("Connection")
-                            .removeHeader("Transfer-Encoding")
-                            .removeHeader("keep-alive")
-                            .removeHeader("Date")
-                            .header("Cache-Control", "public, max-age=" + 500000)
-                            .build();
-                } else {
-                    return originalResponse;
-                }
+        return chain -> {
+            Response originalResponse = chain.proceed(chain.request());
+            String cacheControl = originalResponse.header("Cache-Control");
+            if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
+                    cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0") || cacheControl.contains("only-if-cached")) {
+                return originalResponse.newBuilder()
+                        .removeHeader("must-revalidate")
+                        .removeHeader("Pragma")
+                        .removeHeader("Connection")
+                        .removeHeader("Transfer-Encoding")
+                        .removeHeader("keep-alive")
+                        .removeHeader("Date")
+                        .header("Cache-Control", "public, max-age=" + 500000)
+                        .build();
+            } else {
+                return originalResponse;
             }
         };
     }
@@ -89,26 +87,24 @@ public class OKHttpModule {
     @Provides
     @Named("RetryInterceptor")
     public Interceptor providesRetryInterceptor(Logger logger) {
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException, NullPointerException {
-                Response response = chain.proceed(chain.request());
-                int retries = 0;
-                try {
-                    while (!response.isSuccessful() && retries < REQUEST_RETRIES) {
-                        logger.error("RESPONSE_ERROR: response message: {} response Code: {}", response.message(), response.code());
-                        logger.error("RESPONSE_ERROR: response body: {}", response.body().string());
+        return chain -> {
+            Response response = chain.proceed(chain.request());
+            int retries = 0;
+            try {
+                //if server response isn't successful, contact the server for proper response REQUEST_RETRIES times
+                while (!response.isSuccessful() && retries < REQUEST_RETRIES) {
+                    logger.error("RESPONSE_ERROR: response message: {} response Code: {}", response.message(), response.code());
+                    logger.error("RESPONSE_ERROR: response body: {}", response.body().string());
 
-                        response = chain.proceed(chain.request());
-                        retries++;
-                    }
+                    response = chain.proceed(chain.request());
+                    retries++;
                 }
-                catch (Exception e) {
-                    response.body().close();
-                }
-
-                return response;
             }
+            catch (Exception e) {
+                //close the network call here
+                response.body().close();
+            }
+            return response;
         };
     }
 }

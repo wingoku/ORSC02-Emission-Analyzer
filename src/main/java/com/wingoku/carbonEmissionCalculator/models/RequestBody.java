@@ -1,4 +1,4 @@
-package com.wingoku.carbonEmissionCalculator.models.responses;
+package com.wingoku.carbonEmissionCalculator.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

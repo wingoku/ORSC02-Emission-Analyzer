@@ -1,12 +1,12 @@
 
 package com.wingoku.carbonEmissionCalculator.models.responses.searchCity;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.wingoku.carbonEmissionCalculator.models.responses.Response;
 
-import java.util.List;
-
-public class SearchCityResponse {
+public class SearchCityResponse extends Response {
 
     @SerializedName("geocoding")
     @Expose

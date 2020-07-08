@@ -16,8 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
+        //building dagger component & providing user arguments to MainModule to process & inject in a module that's expecting args
         MainComponent component = DaggerMainComponent.builder().mainModule(new MainModule(args)).build();
         component.inject(main);
+
+        //start calculating
         main.init();
     }
 

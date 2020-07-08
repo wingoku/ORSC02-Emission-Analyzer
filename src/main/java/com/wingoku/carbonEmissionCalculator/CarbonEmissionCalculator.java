@@ -1,7 +1,7 @@
 package com.wingoku.carbonEmissionCalculator;
 
 import com.wingoku.carbonEmissionCalculator.interfaces.GeolocationAPI;
-import com.wingoku.carbonEmissionCalculator.models.responses.RequestBody;
+import com.wingoku.carbonEmissionCalculator.models.RequestBody;
 import com.wingoku.carbonEmissionCalculator.models.responses.directions.DirectionsResponse;
 import com.wingoku.carbonEmissionCalculator.models.responses.searchCity.SearchCityResponse;
 import com.wingoku.carbonEmissionCalculator.utils.Constants;
@@ -12,6 +12,8 @@ import io.reactivex.Single;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import org.slf4j.Logger;
+import retrofit2.Call;
+import retrofit2.Response;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,29 +38,44 @@ public class CarbonEmissionCalculator {
         this.geolocationAPI = geolocationAPI;
     }
 
-    public void calculate() {
+    /**
+     * Start calculating the C02 emission.
+     * @return true: if C02 emission was calculated successful
+     *         false: otherwise
+     */
+    public boolean calculate() {
         c02Map = Utils.getGson().fromJson(Constants.c02DataJSON, HashMap.class);
 
         List<List<Double>> coordinatesList = getCitiesCoordinates(new String[]{commandLineArgsMap.get(KEY_START_CITY), commandLineArgsMap.get(KEY_END_CITY)}).blockingGet();
 
-        if(coordinatesList.size() >= 2) {
+        //openRouteService must return coordinates for 2 cities since we're passing 2 cities. Otherwise there's a user error or server didn't behave as expected
+        if(coordinatesList.size() == 2) {
             RequestBody requestBody = new RequestBody();
             requestBody.setCoordinates(coordinatesList);
             requestBody.setUnit(KILOMETER);
 
-            getC02Consumption(requestBody, Constants.CAR_PROFILE, commandLineArgsMap.get(KEY_TRANSPORTATION_TYPE));
+            return getC02Consumption(requestBody, Constants.CAR_PROFILE, commandLineArgsMap.get(KEY_TRANSPORTATION_TYPE));
         }
+        return false;
     }
 
     private Single<List<List<Double>>> getCitiesCoordinates(String[] cities) {
-        return Observable.fromIterable(Arrays.asList(geolocationAPI.searchCity(Constants.ORS_TOKEN, cities[0], Constants.LOCALITY), geolocationAPI.searchCity(Constants.ORS_TOKEN, cities[1], Constants.LOCALITY)))
-                .flatMap(new Function<Observable<SearchCityResponse>, ObservableSource<?>>() {
+        //combine observables to get responses in a unified method to convert them to list
+         return Observable.fromIterable(Arrays.asList(geolocationAPI.searchCity(ORS_TOKEN, cities[0], LOCALITY), geolocationAPI.searchCity(ORS_TOKEN, cities[1], LOCALITY)))
+                .subscribeOn(Schedulers.computation())
+                .flatMap(new Function<Call<SearchCityResponse>, ObservableSource<?>>() {
                     @Override
-                    public ObservableSource<SearchCityResponse> apply(Observable<SearchCityResponse> searchCityResponseObservable) throws Exception {
-                        return searchCityResponseObservable.observeOn(Schedulers.computation());
+                    public ObservableSource<SearchCityResponse> apply(Call<SearchCityResponse> searchCityResponseCall) throws Exception {
+                        Response response = searchCityResponseCall.execute();
+                        if(response.isSuccessful()) {
+                            return Observable.just((SearchCityResponse) response.body());
+                        }
+                        SearchCityResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), SearchCityResponse.class);
+                        logger.error("Server sent an error: "+ errorResponse.getError());
+                        return Observable.just(errorResponse);
                     }
                 })
-                .toList()
+                .toList()//added responses to list
                 .map(new Function<List<Object>, List<List<Double>>>() {
                     @Override
                     public List<List<Double>> apply(List<Object> objects) throws Exception {
@@ -71,19 +88,74 @@ public class CarbonEmissionCalculator {
                         return coords;
                     }
                 })
-                .onErrorReturn(new Function<Throwable, List<List<Double>>>() {
-                    @Override
-                    public List<List<Double>> apply(Throwable throwable) throws Exception {
-                        logger.error("Data not found. One of the city name is invalid");
-                        return new ArrayList<>();
-                    }
+                .onErrorReturn(throwable -> {
+                    logger.error("Something went wrong.");
+                    return new ArrayList<>();
                 });
     }
 
-    private void getC02Consumption(RequestBody requestBody, String profile, String transportationType) {
-        DirectionsResponse directionsResponse = geolocationAPI.getTimeAndDistance(Constants.ORS_TOKEN, profile, requestBody).blockingSingle();
+    private boolean getC02Consumption(RequestBody requestBody, String profile, String transportationType) {
+        DirectionsResponse directionsResponse = (DirectionsResponse) Observable.just(geolocationAPI.getTimeAndDistance(Constants.ORS_TOKEN, profile, requestBody))
+                .subscribeOn(Schedulers.computation())
+                .flatMap(new Function<Call<DirectionsResponse>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<DirectionsResponse> apply(Call<DirectionsResponse> directionsResponseCall) throws Exception {
+                        Response response = directionsResponseCall.execute();
+                        if(response.isSuccessful()) {
+                            return Observable.just((DirectionsResponse) response.body());
+                        }
+                        DirectionsResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), DirectionsResponse.class);
+                        logger.error("Server sent an error: "+ errorResponse.getError());
+                        return Observable.just(errorResponse);
+                    }
+                })
+                .onErrorReturn(throwable -> {
+                    logger.error("Distance not available for the provided cities & transportation mode");
+                    DirectionsResponse errorResponse = new DirectionsResponse();
+                    errorResponse.setError("Something went wrong");
+                    return errorResponse;
+                }).blockingSingle();
+
+        if(directionsResponse == null || directionsResponse.getError() != null)
+            return false;
+
         double carbonExpenditure = directionsResponse.getRoutes().get(0).getSummary().getDistance() * (c02Map.get(transportationType)/1000.0);
         logger.info("Trip from {} to {} with car type {}", commandLineArgsMap.get(KEY_START_CITY), commandLineArgsMap.get(KEY_END_CITY), commandLineArgsMap.get(KEY_TRANSPORTATION_TYPE));
         logger.info("Your trip caused {} of C02-equivalent", carbonExpenditure);
+        return true;
     }
+   /* private boolean getC02Consumption(RequestBody requestBody, String profile, String transportationType) {
+        *//*DirectionsResponse directionsResponse =*//* geolocationAPI.getTimeAndDistance("Constants.ORS_TOKEN", profile, requestBody)
+                .enqueue(new Callback<DirectionsResponse>() {
+                    @Override
+                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                        System.out.println("response object null? "+ (response.errorBody()==null));
+                        try {
+                            System.out.println("error is: "+ response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DirectionsResponse> call, Throwable t) {
+
+                        System.out.println("error is: ");
+                        t.printStackTrace();
+                    }
+                });
+                *//*.onErrorReturn(throwable -> {
+            logger.error("Distance not available for the provided cities & transportation mode");
+            DirectionsResponse response = new DirectionsResponse();
+            System.out.println("error: "+ response);
+            return response;
+        }).blockingSingle();*//*
+
+        *//*if(directionsResponse == null)
+            return false;
+        double carbonExpenditure = directionsResponse.getRoutes().get(0).getSummary().getDistance() * (c02Map.get(transportationType)/1000.0);
+        logger.info("Trip from {} to {} with car type {}", commandLineArgsMap.get(KEY_START_CITY), commandLineArgsMap.get(KEY_END_CITY), commandLineArgsMap.get(KEY_TRANSPORTATION_TYPE));
+        logger.info("Your trip caused {} of C02-equivalent", carbonExpenditure);*//*
+        return true;
+    }*/
 }
