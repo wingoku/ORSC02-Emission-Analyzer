@@ -1,0 +1,25 @@
+http://api.openrouteservice.org/geocode/search?api_key=5b3ce3597851110001cf62489277d40834e242d487bc675038c1100e&text=Hamb231&layers=locality
+GET
+0
+HTTP/1.1 200 OK
+20
+Server: nginx/1.10.3 (Ubuntu)
+Date: Wed, 08 Jul 2020 08:11:49 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 460
+Connection: keep-alive
+Access-Control-Allow-Headers: X-Requested-With,content-type
+Access-Control-Allow-Methods: GET, OPTIONS
+Access-Control-Allow-Origin: *
+Cache-Control: public
+Charset: utf8
+Etag: W/"1cc-FgfxzmpRTEqxcOyVcQPhcjLvCvc"
+X-Powered-By: pelias
+X-Ratelimit-Limit: 1000
+X-Ratelimit-Remaining: 914
+X-Ratelimit-Reset: 1594223175
+X-Robots-Tag: none
+Access-Control-Allow-Methods: OPTIONS,GET,POST
+Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Authorization, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
+OkHttp-Sent-Millis: 1594195909842
+OkHttp-Received-Millis: 1594195909898
