@@ -5,7 +5,7 @@ package com.wingoku.carbonEmissionCalculator.utils;
  */
 
 public class Constants {
-    public static final boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = false;
     public static final String ORS_TOKEN = System.getenv("ORS_TOKEN");
     public static final String BASE_URL = "http://api.openrouteservice.org/";
     public static final String CAR_PROFILE = "driving-car";

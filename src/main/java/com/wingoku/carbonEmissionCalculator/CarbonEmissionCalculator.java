@@ -63,30 +63,24 @@ public class CarbonEmissionCalculator {
         //combine observables to get responses in a unified method to convert them to list
          return Observable.fromIterable(Arrays.asList(geolocationAPI.searchCity(ORS_TOKEN, cities[0], LOCALITY), geolocationAPI.searchCity(ORS_TOKEN, cities[1], LOCALITY)))
                 .subscribeOn(Schedulers.computation())
-                .flatMap(new Function<Call<SearchCityResponse>, ObservableSource<?>>() {
-                    @Override
-                    public ObservableSource<SearchCityResponse> apply(Call<SearchCityResponse> searchCityResponseCall) throws Exception {
-                        Response response = searchCityResponseCall.execute();
-                        if(response.isSuccessful()) {
-                            return Observable.just((SearchCityResponse) response.body());
-                        }
-                        SearchCityResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), SearchCityResponse.class);
-                        logger.error("Server sent an error: "+ errorResponse.getError());
-                        return Observable.just(errorResponse);
+                .flatMap((Function<Call<SearchCityResponse>, ObservableSource<?>>) searchCityResponseCall -> {
+                    Response response = searchCityResponseCall.execute();
+                    if(response.isSuccessful()) {
+                        return Observable.just((SearchCityResponse) response.body());
                     }
+                    SearchCityResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), SearchCityResponse.class);
+                    logger.error("Server sent an error: "+ errorResponse.getError());
+                    return Observable.just(errorResponse);
                 })
                 .toList()//added responses to list
-                .map(new Function<List<Object>, List<List<Double>>>() {
-                    @Override
-                    public List<List<Double>> apply(List<Object> objects) throws Exception {
-                        SearchCityResponse city1 = (SearchCityResponse) objects.get(0);
-                        SearchCityResponse city2 = (SearchCityResponse) objects.get(1);
+                .map(objects -> {
+                    SearchCityResponse city1 = (SearchCityResponse) objects.get(0);
+                    SearchCityResponse city2 = (SearchCityResponse) objects.get(1);
 
-                        List<List<Double>> coords = new ArrayList<>();
-                        coords.add(city1.getFeatures().get(0).getGeometry().getCoordinates());
-                        coords.add(city2.getFeatures().get(0).getGeometry().getCoordinates());
-                        return coords;
-                    }
+                    List<List<Double>> coords = new ArrayList<>();
+                    coords.add(city1.getFeatures().get(0).getGeometry().getCoordinates());
+                    coords.add(city2.getFeatures().get(0).getGeometry().getCoordinates());
+                    return coords;
                 })
                 .onErrorReturn(throwable -> {
                     logger.error("Something went wrong.");
@@ -97,17 +91,14 @@ public class CarbonEmissionCalculator {
     private boolean getC02Consumption(RequestBody requestBody, String profile, String transportationType) {
         DirectionsResponse directionsResponse = (DirectionsResponse) Observable.just(geolocationAPI.getTimeAndDistance(Constants.ORS_TOKEN, profile, requestBody))
                 .subscribeOn(Schedulers.computation())
-                .flatMap(new Function<Call<DirectionsResponse>, ObservableSource<?>>() {
-                    @Override
-                    public ObservableSource<DirectionsResponse> apply(Call<DirectionsResponse> directionsResponseCall) throws Exception {
-                        Response response = directionsResponseCall.execute();
-                        if(response.isSuccessful()) {
-                            return Observable.just((DirectionsResponse) response.body());
-                        }
-                        DirectionsResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), DirectionsResponse.class);
-                        logger.error("Server sent an error: "+ errorResponse.getError());
-                        return Observable.just(errorResponse);
+                .flatMap((Function<Call<DirectionsResponse>, ObservableSource<?>>) directionsResponseCall -> {
+                    Response response = directionsResponseCall.execute();
+                    if(response.isSuccessful()) {
+                        return Observable.just((DirectionsResponse) response.body());
                     }
+                    DirectionsResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), DirectionsResponse.class);
+                    logger.error("Server sent an error: "+ errorResponse.getError());
+                    return Observable.just(errorResponse);
                 })
                 .onErrorReturn(throwable -> {
                     logger.error("Distance not available for the provided cities & transportation mode");
@@ -124,38 +115,4 @@ public class CarbonEmissionCalculator {
         logger.info("Your trip caused {} of C02-equivalent", carbonExpenditure);
         return true;
     }
-   /* private boolean getC02Consumption(RequestBody requestBody, String profile, String transportationType) {
-        *//*DirectionsResponse directionsResponse =*//* geolocationAPI.getTimeAndDistance("Constants.ORS_TOKEN", profile, requestBody)
-                .enqueue(new Callback<DirectionsResponse>() {
-                    @Override
-                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
-                        System.out.println("response object null? "+ (response.errorBody()==null));
-                        try {
-                            System.out.println("error is: "+ response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<DirectionsResponse> call, Throwable t) {
-
-                        System.out.println("error is: ");
-                        t.printStackTrace();
-                    }
-                });
-                *//*.onErrorReturn(throwable -> {
-            logger.error("Distance not available for the provided cities & transportation mode");
-            DirectionsResponse response = new DirectionsResponse();
-            System.out.println("error: "+ response);
-            return response;
-        }).blockingSingle();*//*
-
-        *//*if(directionsResponse == null)
-            return false;
-        double carbonExpenditure = directionsResponse.getRoutes().get(0).getSummary().getDistance() * (c02Map.get(transportationType)/1000.0);
-        logger.info("Trip from {} to {} with car type {}", commandLineArgsMap.get(KEY_START_CITY), commandLineArgsMap.get(KEY_END_CITY), commandLineArgsMap.get(KEY_TRANSPORTATION_TYPE));
-        logger.info("Your trip caused {} of C02-equivalent", carbonExpenditure);*//*
-        return true;
-    }*/
 }

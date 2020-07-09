@@ -1,6 +1,5 @@
 package com.wingoku.carbonEmissionCalculator.di.components;
 
-import com.wingoku.carbonEmissionCalculator.CarbonEmissionCalculator;
 import com.wingoku.carbonEmissionCalculator.Main;
 import com.wingoku.carbonEmissionCalculator.di.modules.CarbonEmissionCalculatorModule;
 import dagger.Component;

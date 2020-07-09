@@ -21,9 +21,7 @@ public class MainModule {
     }
 
     private void createCommandLineArgsMap(String[] args) {
-        System.out.println("size: "+ args.length);
         for (int i = 0; i < args.length; i++) {
-            System.out.println("args["+i+"]: "+ args[i]);
             if(args[i].contains("--start")) {
                 String cityName = "";
                 if(args[i].contains("=")) {
