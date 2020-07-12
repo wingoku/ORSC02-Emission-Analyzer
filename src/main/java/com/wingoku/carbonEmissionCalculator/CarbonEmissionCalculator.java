@@ -65,11 +65,18 @@ public class CarbonEmissionCalculator {
                 .subscribeOn(Schedulers.computation())
                 .flatMap((Function<Call<SearchCityResponse>, ObservableSource<?>>) searchCityResponseCall -> {
                     Response response = searchCityResponseCall.execute();
+
                     if(response.isSuccessful()) {
                         return Observable.just((SearchCityResponse) response.body());
                     }
+
+                    String requestedCity = "";
+                    if(searchCityResponseCall.request().url().queryParameter("text") != null) {
+                        requestedCity = searchCityResponseCall.request().url().queryParameter("text");
+                    }
+
                     SearchCityResponse errorResponse = Utils.getGson().fromJson(response.errorBody().string(), SearchCityResponse.class);
-                    logger.error("Server sent an error: "+ errorResponse.getError());
+                    logger.error("Server sent an error for city {} --> Error: {}", requestedCity, errorResponse.getError());
                     return Observable.just(errorResponse);
                 })
                 .toList()//added responses to list

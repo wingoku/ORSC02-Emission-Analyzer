@@ -38,6 +38,11 @@ public class MainModuleTest {
 
     @After
     public void validateArgsMap() {
+        if(map == null) {
+            System.err.println("Command line arguments map wasn't populated");
+            return;
+        }
+
         System.out.println("commandLine arguments map: "+ map.toString());
         assertEquals(map.size(), 3);
         assertEquals(map.get(Constants.KEY_START_CITY), "Hamburg");

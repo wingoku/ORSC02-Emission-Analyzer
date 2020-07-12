@@ -93,9 +93,12 @@ public class OKHttpModule {
             try {
                 //if server response isn't successful, contact the server for proper response REQUEST_RETRIES times
                 while (!response.isSuccessful() && retries < REQUEST_RETRIES) {
-                    logger.error("RESPONSE_ERROR: response message: {} response Code: {}", response.message(), response.code());
-                    logger.error("RESPONSE_ERROR: response body: {}", response.body().string());
 
+                    response.body().string();
+                    if(Constants.DEBUG_MODE) {
+                        logger.error("RESPONSE_ERROR: response message: {} response Code: {}", response.message(), response.code());
+                        logger.error("RESPONSE_ERROR: response body: {}", response.body().string());
+                    }
                     response = chain.proceed(chain.request());
                     retries++;
                 }
